@@ -18,6 +18,17 @@ Get Three.js (or use the bundled copy) and sphere.js and run:
 
 	new Photosphere("link-to-image.jpg").loadPhotosphere(document.getElementById("element-on-page"));
 
+If you are including this into some gallery app which can read EXIF XMP tags, you can make it render faster (this is why you don't need every single shot for it to work, Android adds these tags in):
+
+	new Photosphere("link...").setEXIF({
+		"full_width" : "GPano:FullPanoWidthPixels value",
+		"full_height" : "GPano:FullPanoHeightPixels value",
+		"crop_width" : "GPano:CroppedAreaImageWidthPixels value",
+		"crop_height" : "GPano:CroppedAreaImageHeightPixels value",
+		"x" : "GPano:CroppedAreaLeftPixels value",
+		"y" : "GPano:CroppedAreaTopPixels value"
+	}).loadPhotosphere(...);
+
 Tada! :D
 
 ## LICENSE
@@ -25,3 +36,13 @@ Tada! :D
 Whatever, just be nice and credit me!
 
 Any issues, contact me (I'm not a lawyer and you can use in whatever you want so long as you credit me)
+
+## HOW IT WORKS
+
+1. We load EXIF XMP data
+  1. AJAX request as string
+  2. Use Javascript string positioning to pull out the xmp chunk
+  3. Pull out our attributes we need
+2. Create an image of full_width x full_height and put the linked image on at x, y with crop_width x crop_height.
+3. Load Three.JS using Panorma-like details (I used the Three.JS example for this and baked it into the class. I don't have a clue about 3D stuff nor am I really **that** interested)
+4. Boom!
