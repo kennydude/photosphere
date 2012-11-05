@@ -6,6 +6,7 @@ Thanks to
 
 * Three.JS
 * http://stackoverflow.com/questions/1578169/how-can-i-read-xmp-data-from-a-jpg-with-php
+* Uses a portion of Modernizr that has been modified https://github.com/Modernizr/Modernizr/blob/master/feature-detects/webgl-extensions.js
 
 ## TO TEST
 
