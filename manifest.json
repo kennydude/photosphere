@@ -1,0 +1,18 @@
+{
+   "name":        "Photospheres on the web",
+   "version":     "1",
+   "manifest_version" : 2,
+   "description": "View Photospheres on the web! For reals!",
+   "permissions": [
+      "http://i.imgur.com/"
+   ],
+   "homepage_url": "http://kennydude.me",
+   "content_scripts": [
+      {
+         "matches": ["http://imgur.com/*", "https://imgur.com/*"],
+	"exclude_matches" : ["http://imgur.com/a/*", "https://imgur.com/a/*"],
+         "js": ["page.js"],
+         "all_frames": true
+      }
+   ]
+}
