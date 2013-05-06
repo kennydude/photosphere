@@ -33,9 +33,7 @@ Tada! :D
 
 ## LICENSE
 
-Whatever, just be nice and credit me!
-
-Any issues, contact me (I'm not a lawyer and you can use in whatever you want so long as you credit me)
+GPLv3 http://www.tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3)
 
 ## HOW IT WORKS
 

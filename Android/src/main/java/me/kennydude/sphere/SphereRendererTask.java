@@ -69,8 +69,7 @@ public class SphereRendererTask {
 					mReader.close();
 					Bitmap mSource = BitmapFactory.decodeFile( mFile.getAbsolutePath() );
 
-					int surfaceArea = ( (int)( 4 * Math.PI * SphereRenderer.SPHERE_RADIUS ) ) * 2;
-					Bitmap mTarget = Bitmap.createBitmap(surfaceArea, surfaceArea, Bitmap.Config.ARGB_4444);
+					Bitmap mTarget = Bitmap.createBitmap(fullWidth, fullHeight, Bitmap.Config.ARGB_4444);
 					Canvas mCanvas = new Canvas(mTarget);
 
 					mCanvas.drawRGB( 200, 0, 0 );
@@ -78,12 +77,12 @@ public class SphereRendererTask {
 					Paint mPaint = new Paint();
 					mPaint.setColor( Color.WHITE );
 					mPaint.setStrokeWidth(1);
-					for(int i = 0; i < surfaceArea; i += 200){
-						mCanvas.drawLine( 0, i, surfaceArea, i, mPaint );
+					for(int i = 0; i < fullHeight; i += 200){
+						mCanvas.drawLine( 0, i, fullWidth, i, mPaint );
 					}
 
 					mCanvas.drawBitmap(mSource, null, new Rect(
-							x, y, (cropWidth / fullWidth) * surfaceArea, (cropHeight / fullHeight) * surfaceArea
+							x, y, cropWidth, cropHeight
 					), null);
 					mCanvas.save();
 
