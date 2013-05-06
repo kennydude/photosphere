@@ -1,0 +1,78 @@
+package me.kennydude.sphere;
+
+import android.opengl.GLSurfaceView;
+import android.util.Log;
+import com.threed.jpct.*;
+import com.threed.jpct.util.MemoryHelper;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: kennydude
+ * Date: 05/05/13
+ * Time: 18:33
+ * To change this template use File | Settings | File Templates.
+ */
+public class SphereRenderer implements GLSurfaceView.Renderer {
+	private RGBColor back = new RGBColor(50, 50, 100);
+	public float touchTurn, touchTurnUp;
+
+	FrameBuffer fb;
+	Object3D mSphere;
+	World mWorld;
+
+	@Override
+	public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
+
+	}
+
+	@Override
+	public void onSurfaceChanged(GL10 gl, int w, int h) {
+		if (fb != null) {
+			fb.dispose();
+		}
+		fb = new FrameBuffer(gl, w, h);
+
+		// TODO: Make the actual sphere
+		Texture texture = new Texture(3000, 3000, RGBColor.RED);
+		TextureManager.getInstance().addTexture("sphere", texture);
+
+		mSphere = Primitives.getSphere(20);
+		//mSphere.calcTextureWrapSpherical();
+		mSphere.setTexture("sphere");
+		mSphere.build();
+
+		mWorld = new World();
+		//mWorld.setAmbientLight(50,50,50);
+
+		mWorld.addObject(mSphere);
+
+		Camera camera = mWorld.getCamera();
+		//camera.moveCamera( Camera.CAMERA_MOVEOUT, 30 );
+		//camera.setPosition( mSphere.getTransformedCenter() );
+		camera.lookAt( mSphere.getTransformedCenter() );
+		//camera.moveCamera(Camera.CAMERA_MOVEIN, 5);
+
+		MemoryHelper.compact();
+	}
+
+	@Override
+	public void onDrawFrame(GL10 gl) {
+		if (touchTurn != 0) {
+			mWorld.getCamera().rotateY(touchTurn);
+			touchTurn = 0;
+		}
+
+		if (touchTurnUp != 0) {
+			mWorld.getCamera().rotateX(touchTurnUp);
+			touchTurnUp = 0;
+		}
+
+		fb.clear(back);
+		mWorld.renderScene(fb);
+		mWorld.draw(fb);
+		fb.display();
+	}
+}
