@@ -1,0 +1,3 @@
+[submodule "exif-js"]
+	path = exif-js
+	url = https://github.com/jseidelin/exif-js
