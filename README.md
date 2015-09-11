@@ -1,3 +1,10 @@
+**IMPORTANT NOTICE:**
+
+THIS IS VERY OLD AND YOU SHOULD NOT USE THIS. NO RESPONSES TO EMAILS OR TICKETS WILL BE GIVEN
+FROM ME
+
+---
+
 # PHOTOSPHERE
 
 This allows you to view the new Photospheres in Android 4.2 without a problem **without Google+**
